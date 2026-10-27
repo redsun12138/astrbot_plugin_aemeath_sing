@@ -19,6 +19,26 @@
     "type": "int",
     "default": 2
   },
+  "self_sing_enabled": {
+    "description": "允许她通过 [sing] 标记自己决定唱一段",
+    "type": "bool",
+    "default": true
+  },
+  "self_sing_cooldown_minutes": {
+    "description": "两次自主唱之间的最小间隔（分钟）",
+    "type": "int",
+    "default": 20
+  },
+  "self_sing_delay_seconds": {
+    "description": "自主唱前等几秒，让文字回复先发出去",
+    "type": "int",
+    "default": 2
+  },
+  "self_sing_intro": {
+    "description": "自主唱之前说的一句话",
+    "type": "string",
+    "default": "那我唱一段～"
+  },
   "proactive_reply_enabled": {
     "description": "允许她在用户回复主动消息后唱",
     "type": "bool",

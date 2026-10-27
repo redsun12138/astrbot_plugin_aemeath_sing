@@ -1,7 +1,7 @@
 name: astrbot_plugin_aemeath_sing
 display_name: 爱弥斯·点唱
-version: 1.0.0
-desc: 让爱弥斯一段一段唱她自己的歌；按人声停顿切分，支持进度续唱、歌单和停止
+version: 1.1.0
+desc: 让爱弥斯一段一段唱她自己的歌；支持自然语言点唱、[sing] 自主唱、回复主动消息后唱
 author: redsun12138
 repo: https://github.com/redsun12138/astrbot_plugin_aemeath_sing
 astrbot_version: ">=4.24.0"
