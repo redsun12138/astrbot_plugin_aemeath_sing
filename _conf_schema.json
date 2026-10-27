@@ -25,9 +25,9 @@
     "default": true
   },
   "proactive_reply_percent": {
-    "description": "回复主动消息后唱的概率（百分比，100=每次回复都唱）",
+    "description": "回复主动消息后唱的概率（百分比，0=关闭，默认关闭；100=每次回复都唱）",
     "type": "int",
-    "default": 100
+    "default": 0
   },
   "proactive_reply_window_minutes": {
     "description": "主动消息发出后多少分钟内回复才算数",

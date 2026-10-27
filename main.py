@@ -55,6 +55,21 @@ SING_PATTERNS = (
     "唱一下",
 )
 
+# 用户求鼓励/奖励时，也算点唱
+ENCOURAGE_PATTERNS = (
+    "鼓励我",
+    "鼓励一下",
+    "奖励我",
+    "奖励一下",
+    "夸夸我",
+    "夸我一下",
+    "给我打气",
+    "安慰我",
+    "哄哄我",
+    "求鼓励",
+    "求奖励",
+)
+
 
 class AemeathSingPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig):
@@ -218,7 +233,12 @@ class AemeathSingPlugin(Star):
         t = (text or "").strip()
         if not t or t.startswith("/"):
             return False
-        return any(p in t for p in SING_PATTERNS)
+        return any(p in t for p in SING_PATTERNS + ENCOURAGE_PATTERNS)
+
+    @staticmethod
+    def _is_encourage(text: str) -> bool:
+        t = (text or "").strip()
+        return any(p in t for p in ENCOURAGE_PATTERNS)
 
     def _clean_command_arg(self, text: str) -> str:
         t = (text or "").strip()
@@ -252,7 +272,7 @@ class AemeathSingPlugin(Star):
 
         # 一条主动消息只给一次机会，避免用户连发几条时反复抽签
         self._mark_proactive_seen(umo, proactive_ts)
-        percent = float(self.config.get("proactive_reply_percent", 100))
+        percent = float(self.config.get("proactive_reply_percent", 0))
         if random.random() * 100 >= percent:
             return
 
@@ -303,7 +323,8 @@ class AemeathSingPlugin(Star):
             self._mark_proactive_seen(umo, self._proactive_ts(umo))
             logger.info("[aemeath_sing] 自然语言点唱 %s %s/%s", song.get("title"), idx, total)
             try:
-                yield event.chain_result(self._record(song, chunk, "好呀，那我唱几句～"))
+                intro = "那我唱一段给你打气～" if self._is_encourage(text) else "好呀，那我唱几句～"
+                yield event.chain_result(self._record(song, chunk, intro))
             except Exception as exc:
                 logger.error("[aemeath_sing] 发送失败: %s", exc)
                 yield event.plain_result("这一段音频找不到了。")
