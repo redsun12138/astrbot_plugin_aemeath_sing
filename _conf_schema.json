@@ -1,0 +1,17 @@
+{
+  "enabled": {
+    "description": "启用爱弥斯点唱插件",
+    "type": "bool",
+    "default": true
+  },
+  "random_start": {
+    "description": "没有指定歌曲时随机选一首开始",
+    "type": "bool",
+    "default": true
+  },
+  "default_song": {
+    "description": "默认歌曲名（留空则随机或按歌单顺序）",
+    "type": "string",
+    "default": ""
+  }
+}

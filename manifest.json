@@ -1,0 +1,702 @@
+{
+  "songs": [
+    {
+      "title": "小小奇迹",
+      "slug": "song01",
+      "duration": 262.67,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 14.95,
+          "duration": 14.95
+        },
+        {
+          "file": "002.wav",
+          "start": 14.95,
+          "end": 32.55,
+          "duration": 17.6
+        },
+        {
+          "file": "003.wav",
+          "start": 32.55,
+          "end": 47.1,
+          "duration": 14.55
+        },
+        {
+          "file": "004.wav",
+          "start": 47.1,
+          "end": 63.8,
+          "duration": 16.7
+        },
+        {
+          "file": "005.wav",
+          "start": 63.8,
+          "end": 78.9,
+          "duration": 15.1
+        },
+        {
+          "file": "006.wav",
+          "start": 78.9,
+          "end": 94.95,
+          "duration": 16.05
+        },
+        {
+          "file": "007.wav",
+          "start": 94.95,
+          "end": 109.3,
+          "duration": 14.35
+        },
+        {
+          "file": "008.wav",
+          "start": 109.3,
+          "end": 125.1,
+          "duration": 15.8
+        },
+        {
+          "file": "009.wav",
+          "start": 125.1,
+          "end": 139.8,
+          "duration": 14.7
+        },
+        {
+          "file": "010.wav",
+          "start": 139.8,
+          "end": 154.45,
+          "duration": 14.65
+        },
+        {
+          "file": "011.wav",
+          "start": 154.45,
+          "end": 168.95,
+          "duration": 14.5
+        },
+        {
+          "file": "012.wav",
+          "start": 168.95,
+          "end": 184.4,
+          "duration": 15.45
+        },
+        {
+          "file": "013.wav",
+          "start": 184.4,
+          "end": 200.45,
+          "duration": 16.05
+        },
+        {
+          "file": "014.wav",
+          "start": 200.45,
+          "end": 215.95,
+          "duration": 15.5
+        },
+        {
+          "file": "015.wav",
+          "start": 215.95,
+          "end": 232.35,
+          "duration": 16.4
+        },
+        {
+          "file": "016.wav",
+          "start": 232.35,
+          "end": 248.45,
+          "duration": 16.1
+        },
+        {
+          "file": "017.wav",
+          "start": 248.45,
+          "end": 262.67,
+          "duration": 14.22
+        }
+      ]
+    },
+    {
+      "title": "星炬不熄",
+      "slug": "song02",
+      "duration": 232.95,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 14.95,
+          "duration": 14.95
+        },
+        {
+          "file": "002.wav",
+          "start": 14.95,
+          "end": 28.9,
+          "duration": 13.95
+        },
+        {
+          "file": "003.wav",
+          "start": 28.9,
+          "end": 43.45,
+          "duration": 14.55
+        },
+        {
+          "file": "004.wav",
+          "start": 43.45,
+          "end": 57.2,
+          "duration": 13.75
+        },
+        {
+          "file": "005.wav",
+          "start": 57.2,
+          "end": 73.8,
+          "duration": 16.6
+        },
+        {
+          "file": "006.wav",
+          "start": 73.8,
+          "end": 88.25,
+          "duration": 14.45
+        },
+        {
+          "file": "007.wav",
+          "start": 88.25,
+          "end": 103.4,
+          "duration": 15.15
+        },
+        {
+          "file": "008.wav",
+          "start": 103.4,
+          "end": 118.65,
+          "duration": 15.25
+        },
+        {
+          "file": "009.wav",
+          "start": 118.65,
+          "end": 136.2,
+          "duration": 17.55
+        },
+        {
+          "file": "010.wav",
+          "start": 136.2,
+          "end": 152.25,
+          "duration": 16.05
+        },
+        {
+          "file": "011.wav",
+          "start": 152.25,
+          "end": 166.85,
+          "duration": 14.6
+        },
+        {
+          "file": "012.wav",
+          "start": 166.85,
+          "end": 183.9,
+          "duration": 17.05
+        },
+        {
+          "file": "013.wav",
+          "start": 183.9,
+          "end": 200.15,
+          "duration": 16.25
+        },
+        {
+          "file": "014.wav",
+          "start": 200.15,
+          "end": 215.0,
+          "duration": 14.85
+        },
+        {
+          "file": "015.wav",
+          "start": 215.0,
+          "end": 232.95,
+          "duration": 17.95
+        }
+      ]
+    },
+    {
+      "title": "极限迪斯科",
+      "slug": "song03",
+      "duration": 157.94,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 15.55,
+          "duration": 15.55
+        },
+        {
+          "file": "002.wav",
+          "start": 15.55,
+          "end": 30.3,
+          "duration": 14.75
+        },
+        {
+          "file": "003.wav",
+          "start": 30.3,
+          "end": 45.2,
+          "duration": 14.9
+        },
+        {
+          "file": "004.wav",
+          "start": 45.2,
+          "end": 62.0,
+          "duration": 16.8
+        },
+        {
+          "file": "005.wav",
+          "start": 62.0,
+          "end": 76.95,
+          "duration": 14.95
+        },
+        {
+          "file": "006.wav",
+          "start": 76.95,
+          "end": 92.8,
+          "duration": 15.85
+        },
+        {
+          "file": "007.wav",
+          "start": 92.8,
+          "end": 109.65,
+          "duration": 16.85
+        },
+        {
+          "file": "008.wav",
+          "start": 109.65,
+          "end": 126.75,
+          "duration": 17.1
+        },
+        {
+          "file": "009.wav",
+          "start": 126.75,
+          "end": 142.35,
+          "duration": 15.6
+        },
+        {
+          "file": "010.wav",
+          "start": 142.35,
+          "end": 157.94,
+          "duration": 15.59
+        }
+      ]
+    },
+    {
+      "title": "碎花",
+      "slug": "song04",
+      "duration": 152.47,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 14.6,
+          "duration": 14.6
+        },
+        {
+          "file": "002.wav",
+          "start": 14.6,
+          "end": 30.15,
+          "duration": 15.55
+        },
+        {
+          "file": "003.wav",
+          "start": 30.15,
+          "end": 47.8,
+          "duration": 17.65
+        },
+        {
+          "file": "004.wav",
+          "start": 47.8,
+          "end": 62.95,
+          "duration": 15.15
+        },
+        {
+          "file": "005.wav",
+          "start": 62.95,
+          "end": 78.95,
+          "duration": 16.0
+        },
+        {
+          "file": "006.wav",
+          "start": 78.95,
+          "end": 92.95,
+          "duration": 14.0
+        },
+        {
+          "file": "007.wav",
+          "start": 92.95,
+          "end": 108.5,
+          "duration": 15.55
+        },
+        {
+          "file": "008.wav",
+          "start": 108.5,
+          "end": 124.4,
+          "duration": 15.9
+        },
+        {
+          "file": "009.wav",
+          "start": 124.4,
+          "end": 139.25,
+          "duration": 14.85
+        },
+        {
+          "file": "010.wav",
+          "start": 139.25,
+          "end": 152.47,
+          "duration": 13.22
+        }
+      ]
+    },
+    {
+      "title": "纸飞机",
+      "slug": "song05",
+      "duration": 233.51,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 19.25,
+          "duration": 19.25
+        },
+        {
+          "file": "002.wav",
+          "start": 19.25,
+          "end": 34.8,
+          "duration": 15.55
+        },
+        {
+          "file": "003.wav",
+          "start": 34.8,
+          "end": 51.7,
+          "duration": 16.9
+        },
+        {
+          "file": "004.wav",
+          "start": 51.7,
+          "end": 66.3,
+          "duration": 14.6
+        },
+        {
+          "file": "005.wav",
+          "start": 66.3,
+          "end": 82.5,
+          "duration": 16.2
+        },
+        {
+          "file": "006.wav",
+          "start": 82.5,
+          "end": 96.2,
+          "duration": 13.7
+        },
+        {
+          "file": "007.wav",
+          "start": 96.2,
+          "end": 108.95,
+          "duration": 12.75
+        },
+        {
+          "file": "008.wav",
+          "start": 108.95,
+          "end": 123.05,
+          "duration": 14.1
+        },
+        {
+          "file": "009.wav",
+          "start": 123.05,
+          "end": 138.95,
+          "duration": 15.9
+        },
+        {
+          "file": "010.wav",
+          "start": 138.95,
+          "end": 153.85,
+          "duration": 14.9
+        },
+        {
+          "file": "011.wav",
+          "start": 153.85,
+          "end": 166.3,
+          "duration": 12.45
+        },
+        {
+          "file": "012.wav",
+          "start": 166.3,
+          "end": 182.65,
+          "duration": 16.35
+        },
+        {
+          "file": "013.wav",
+          "start": 182.65,
+          "end": 199.65,
+          "duration": 17.0
+        },
+        {
+          "file": "014.wav",
+          "start": 199.65,
+          "end": 215.35,
+          "duration": 15.7
+        },
+        {
+          "file": "015.wav",
+          "start": 215.35,
+          "end": 233.51,
+          "duration": 18.16
+        }
+      ]
+    },
+    {
+      "title": "远航星的告别",
+      "slug": "song06",
+      "duration": 225.0,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 15.4,
+          "duration": 15.4
+        },
+        {
+          "file": "002.wav",
+          "start": 15.4,
+          "end": 30.95,
+          "duration": 15.55
+        },
+        {
+          "file": "003.wav",
+          "start": 30.95,
+          "end": 45.15,
+          "duration": 14.2
+        },
+        {
+          "file": "004.wav",
+          "start": 45.15,
+          "end": 59.55,
+          "duration": 14.4
+        },
+        {
+          "file": "005.wav",
+          "start": 59.55,
+          "end": 75.5,
+          "duration": 15.95
+        },
+        {
+          "file": "006.wav",
+          "start": 75.5,
+          "end": 90.5,
+          "duration": 15.0
+        },
+        {
+          "file": "007.wav",
+          "start": 90.5,
+          "end": 105.3,
+          "duration": 14.8
+        },
+        {
+          "file": "008.wav",
+          "start": 105.3,
+          "end": 120.6,
+          "duration": 15.3
+        },
+        {
+          "file": "009.wav",
+          "start": 120.6,
+          "end": 136.2,
+          "duration": 15.6
+        },
+        {
+          "file": "010.wav",
+          "start": 136.2,
+          "end": 150.85,
+          "duration": 14.65
+        },
+        {
+          "file": "011.wav",
+          "start": 150.85,
+          "end": 166.2,
+          "duration": 15.35
+        },
+        {
+          "file": "012.wav",
+          "start": 166.2,
+          "end": 181.1,
+          "duration": 14.9
+        },
+        {
+          "file": "013.wav",
+          "start": 181.1,
+          "end": 196.3,
+          "duration": 15.2
+        },
+        {
+          "file": "014.wav",
+          "start": 196.3,
+          "end": 210.95,
+          "duration": 14.65
+        },
+        {
+          "file": "015.wav",
+          "start": 210.95,
+          "end": 225.0,
+          "duration": 14.05
+        }
+      ]
+    },
+    {
+      "title": "那颗星梦见的春日",
+      "slug": "song07",
+      "duration": 241.38,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 14.8,
+          "duration": 14.8
+        },
+        {
+          "file": "002.wav",
+          "start": 14.8,
+          "end": 29.8,
+          "duration": 15.0
+        },
+        {
+          "file": "003.wav",
+          "start": 29.8,
+          "end": 44.65,
+          "duration": 14.85
+        },
+        {
+          "file": "004.wav",
+          "start": 44.65,
+          "end": 59.6,
+          "duration": 14.95
+        },
+        {
+          "file": "005.wav",
+          "start": 59.6,
+          "end": 74.6,
+          "duration": 15.0
+        },
+        {
+          "file": "006.wav",
+          "start": 74.6,
+          "end": 89.9,
+          "duration": 15.3
+        },
+        {
+          "file": "007.wav",
+          "start": 89.9,
+          "end": 103.6,
+          "duration": 13.7
+        },
+        {
+          "file": "008.wav",
+          "start": 103.6,
+          "end": 118.75,
+          "duration": 15.15
+        },
+        {
+          "file": "009.wav",
+          "start": 118.75,
+          "end": 133.95,
+          "duration": 15.2
+        },
+        {
+          "file": "010.wav",
+          "start": 133.95,
+          "end": 148.95,
+          "duration": 15.0
+        },
+        {
+          "file": "011.wav",
+          "start": 148.95,
+          "end": 164.6,
+          "duration": 15.65
+        },
+        {
+          "file": "012.wav",
+          "start": 164.6,
+          "end": 179.65,
+          "duration": 15.05
+        },
+        {
+          "file": "013.wav",
+          "start": 179.65,
+          "end": 194.8,
+          "duration": 15.15
+        },
+        {
+          "file": "014.wav",
+          "start": 194.8,
+          "end": 210.2,
+          "duration": 15.4
+        },
+        {
+          "file": "015.wav",
+          "start": 210.2,
+          "end": 226.35,
+          "duration": 16.15
+        },
+        {
+          "file": "016.wav",
+          "start": 226.35,
+          "end": 241.38,
+          "duration": 15.03
+        }
+      ]
+    },
+    {
+      "title": "靛青宇宙",
+      "slug": "song08",
+      "duration": 147.9,
+      "chunks": [
+        {
+          "file": "001.wav",
+          "start": 0.0,
+          "end": 17.5,
+          "duration": 17.5
+        },
+        {
+          "file": "002.wav",
+          "start": 17.5,
+          "end": 32.8,
+          "duration": 15.3
+        },
+        {
+          "file": "003.wav",
+          "start": 32.8,
+          "end": 46.95,
+          "duration": 14.15
+        },
+        {
+          "file": "004.wav",
+          "start": 46.95,
+          "end": 62.45,
+          "duration": 15.5
+        },
+        {
+          "file": "005.wav",
+          "start": 62.45,
+          "end": 77.2,
+          "duration": 14.75
+        },
+        {
+          "file": "006.wav",
+          "start": 77.2,
+          "end": 93.75,
+          "duration": 16.55
+        },
+        {
+          "file": "007.wav",
+          "start": 93.75,
+          "end": 111.6,
+          "duration": 17.85
+        },
+        {
+          "file": "008.wav",
+          "start": 111.6,
+          "end": 131.15,
+          "duration": 19.55
+        },
+        {
+          "file": "009.wav",
+          "start": 131.15,
+          "end": 147.9,
+          "duration": 16.75
+        }
+      ]
+    }
+  ]
+}
