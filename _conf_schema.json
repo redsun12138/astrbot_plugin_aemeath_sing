@@ -13,5 +13,45 @@
     "description": "默认歌曲名（留空则随机或按歌单顺序）",
     "type": "string",
     "default": ""
+  },
+  "cooldown_minutes": {
+    "description": "两次自然语言点唱之间的最小间隔（分钟）",
+    "type": "int",
+    "default": 2
+  },
+  "auto_sing_enabled": {
+    "description": "允许她在聊天中主动唱",
+    "type": "bool",
+    "default": true
+  },
+  "auto_sing_percent": {
+    "description": "每条消息触发主动唱的概率（百分比）",
+    "type": "int",
+    "default": 3
+  },
+  "auto_sing_cooldown_minutes": {
+    "description": "两次主动唱之间的最小间隔（分钟）",
+    "type": "int",
+    "default": 60
+  },
+  "auto_sing_delay_seconds": {
+    "description": "主动唱前等待几秒，避免和文字回复同时发出",
+    "type": "int",
+    "default": 5
+  },
+  "auto_sing_quiet_start": {
+    "description": "主动唱安静时段开始（HH:MM）",
+    "type": "string",
+    "default": "23:30"
+  },
+  "auto_sing_quiet_end": {
+    "description": "主动唱安静时段结束（HH:MM）",
+    "type": "string",
+    "default": "08:00"
+  },
+  "auto_sing_intro": {
+    "description": "主动唱时先说的一句话",
+    "type": "string",
+    "default": "突然想唱一句～"
   }
 }
