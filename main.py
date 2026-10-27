@@ -3,7 +3,7 @@
 
 三种触发：
     自然语言：我想听你唱歌 / 唱首歌 / 来一首 / 唱一段 ...
-    主动唱：聊天中按概率突然想唱一句（有冷却和安静时段）
+    主动回唱：她发过主动消息后，用户回复时才可能唱；一条主动消息最多一次
     命令：/唱、/唱 歌名、/唱 状态、/唱 停止
 
 音频来自预先切好的歌曲片段，不调用 CosyVoice，也不需要 GPU。
@@ -13,11 +13,8 @@ from __future__ import annotations
 import asyncio
 import json
 import random
-import re
 import time
-from datetime import datetime, time as dtime
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import astrbot.api.message_components as Comp
 from astrbot.api import AstrBotConfig, logger
@@ -30,8 +27,6 @@ try:
 except Exception:  # 兼容旧版本
     def get_astrbot_data_path():
         return "data"
-
-TZ = ZoneInfo("Asia/Shanghai")
 
 # 只匹配“请求唱歌”，避免“你唱得真好”这种误触
 SING_PATTERNS = (
@@ -60,8 +55,6 @@ SING_PATTERNS = (
     "唱一下",
 )
 
-AUTO_HINTS = ("难过", "不开心", "累了", "好累", "想你", "睡不着", "开心", "晚上", "晚安")
-
 
 class AemeathSingPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig):
@@ -78,8 +71,10 @@ class AemeathSingPlugin(Star):
         self.manifest = self._load_manifest()
         self.state = self._load_state()
         self._last_sing: dict[str, float] = {}
-        self._last_auto: dict[str, float] = {}
         self._tasks: set[asyncio.Task] = set()
+        self.proactive_state_file = (
+            self.data_dir.parent / "astrbot_plugin_proactive_care" / "state.json"
+        )
         logger.info(
             "[aemeath_sing] 点唱插件已加载：%s 首，%s 段",
             len(self.manifest.get("songs", [])),
@@ -196,24 +191,21 @@ class AemeathSingPlugin(Star):
         comps.append(Comp.Record(file=str(path), url=str(path)))
         return comps
 
-    # ---------- 时间/概率 ----------
+    # ---------- 主动消息回唱 ----------
 
-    @staticmethod
-    def _parse_hhmm(value: str, default: str) -> dtime:
+    def _proactive_ts(self, umo: str) -> float:
+        """读取主动关心插件记录的“最近一次主动消息”时间。"""
         try:
-            h, m = str(value or default).split(":", 1)
-            return dtime(int(h), int(m))
+            data = json.loads(self.proactive_state_file.read_text(encoding="utf-8"))
+            st = data.get("sessions", {}).get(umo, {})
+            return float(st.get("last_proactive_at") or 0.0)
         except Exception:
-            h, m = default.split(":", 1)
-            return dtime(int(h), int(m))
+            return 0.0
 
-    def _quiet_now(self) -> bool:
-        start = self._parse_hhmm(str(self.config.get("auto_sing_quiet_start", "23:30")), "23:30")
-        end = self._parse_hhmm(str(self.config.get("auto_sing_quiet_end", "08:00")), "08:00")
-        now = datetime.now(TZ).time()
-        if start <= end:
-            return start <= now < end
-        return now >= start or now < end
+    def _mark_proactive_seen(self, umo: str, ts: float) -> None:
+        if ts:
+            self._session(umo)["last_proactive_seen"] = ts
+            self._save_state()
 
     def _cooling(self, umo: str, minutes: int) -> bool:
         last = self._last_sing.get(umo, 0.0)
@@ -241,43 +233,51 @@ class AemeathSingPlugin(Star):
             t = ""
         return t
 
-    async def _maybe_auto(self, event: AstrMessageEvent) -> None:
-        if not self.config.get("auto_sing_enabled", True):
-            return
-        if self._quiet_now():
+    async def _maybe_sing_after_proactive(self, event: AstrMessageEvent) -> None:
+        """只在她发过主动消息、且用户回复之后才可能唱；一条主动消息最多一次。"""
+        if not self.config.get("proactive_reply_enabled", True):
             return
         umo = event.unified_msg_origin
-        cooldown = int(self.config.get("auto_sing_cooldown_minutes", 60))
-        if time.time() - self._last_auto.get(umo, 0.0) < cooldown * 60:
+        proactive_ts = self._proactive_ts(umo)
+        if proactive_ts <= 0:
             return
 
-        percent = float(self.config.get("auto_sing_percent", 3))
-        text = event.message_str or ""
-        if any(h in text for h in AUTO_HINTS):
-            percent *= 2
+        window = int(self.config.get("proactive_reply_window_minutes", 30))
+        if time.time() - proactive_ts > window * 60:
+            return
+
+        session = self._session(umo)
+        if float(session.get("last_proactive_seen") or 0) >= proactive_ts:
+            return
+
+        # 一条主动消息只给一次机会，避免用户连发几条时反复抽签
+        self._mark_proactive_seen(umo, proactive_ts)
+        percent = float(self.config.get("proactive_reply_percent", 100))
         if random.random() * 100 >= percent:
             return
 
-        self._last_auto[umo] = time.time()
-        delay = max(1, int(self.config.get("auto_sing_delay_seconds", 5)))
+        delay = max(1, int(self.config.get("proactive_reply_delay_seconds", 4)))
 
         async def later():
             await asyncio.sleep(delay)
-            if self._quiet_now():
-                return
             got = self._advance(umo)
             if not got:
                 return
             song, chunk, idx, total = got
-            intro = str(self.config.get("auto_sing_intro", "突然想唱一句～"))
+            intro = str(self.config.get("proactive_reply_intro", "突然想唱一句～"))
             try:
                 await self.context.send_message(
                     umo,
                     MessageChain(self._record(song, chunk, intro)),
                 )
-                logger.info("[aemeath_sing] 主动唱 %s %s/%s", song.get("title"), idx, total)
+                logger.info(
+                    "[aemeath_sing] 回复主动消息后唱 %s %s/%s",
+                    song.get("title"),
+                    idx,
+                    total,
+                )
             except Exception as exc:
-                logger.error("[aemeath_sing] 主动唱失败: %s", exc)
+                logger.error("[aemeath_sing] 主动回唱失败: %s", exc)
 
         task = asyncio.create_task(later())
         self._tasks.add(task)
@@ -300,6 +300,7 @@ class AemeathSingPlugin(Star):
                 return
             song, chunk, idx, total = got
             self._last_sing[umo] = time.time()
+            self._mark_proactive_seen(umo, self._proactive_ts(umo))
             logger.info("[aemeath_sing] 自然语言点唱 %s %s/%s", song.get("title"), idx, total)
             try:
                 yield event.chain_result(self._record(song, chunk, "好呀，那我唱几句～"))
@@ -308,9 +309,9 @@ class AemeathSingPlugin(Star):
                 yield event.plain_result("这一段音频找不到了。")
             return
 
-        # 不是点唱请求时，按概率决定她要不要主动唱
+        # 不是点唱请求时，只有“她刚发过主动消息、用户正在回复”才可能唱
         if not text.startswith("/"):
-            await self._maybe_auto(event)
+            await self._maybe_sing_after_proactive(event)
 
     @filter.command("唱")
     async def sing_cmd(self, event: AstrMessageEvent):
@@ -362,6 +363,7 @@ class AemeathSingPlugin(Star):
             return
         song, chunk, idx, total = got
         self._last_sing[umo] = time.time()
+        self._mark_proactive_seen(umo, self._proactive_ts(umo))
         logger.info("[aemeath_sing] 命令点唱 %s %s/%s", song.get("title"), idx, total)
         try:
             yield event.chain_result(self._record(song, chunk))

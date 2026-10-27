@@ -19,38 +19,28 @@
     "type": "int",
     "default": 2
   },
-  "auto_sing_enabled": {
-    "description": "允许她在聊天中主动唱",
+  "proactive_reply_enabled": {
+    "description": "允许她在用户回复主动消息后唱",
     "type": "bool",
     "default": true
   },
-  "auto_sing_percent": {
-    "description": "每条消息触发主动唱的概率（百分比）",
+  "proactive_reply_percent": {
+    "description": "回复主动消息后唱的概率（百分比，100=每次回复都唱）",
     "type": "int",
-    "default": 3
+    "default": 100
   },
-  "auto_sing_cooldown_minutes": {
-    "description": "两次主动唱之间的最小间隔（分钟）",
+  "proactive_reply_window_minutes": {
+    "description": "主动消息发出后多少分钟内回复才算数",
     "type": "int",
-    "default": 60
+    "default": 30
   },
-  "auto_sing_delay_seconds": {
-    "description": "主动唱前等待几秒，避免和文字回复同时发出",
+  "proactive_reply_delay_seconds": {
+    "description": "用户回复后等几秒再发歌，避免和文字回复同时发出",
     "type": "int",
-    "default": 5
+    "default": 4
   },
-  "auto_sing_quiet_start": {
-    "description": "主动唱安静时段开始（HH:MM）",
-    "type": "string",
-    "default": "23:30"
-  },
-  "auto_sing_quiet_end": {
-    "description": "主动唱安静时段结束（HH:MM）",
-    "type": "string",
-    "default": "08:00"
-  },
-  "auto_sing_intro": {
-    "description": "主动唱时先说的一句话",
+  "proactive_reply_intro": {
+    "description": "回复主动消息后唱之前说的一句话",
     "type": "string",
     "default": "突然想唱一句～"
   }

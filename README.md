@@ -14,7 +14,7 @@
 想听歌
 ```
 
-她也会在聊天中按概率主动唱一句；主动唱有冷却和安静时段，避免刷屏。
+她还会在你回复她的主动消息后，偶尔唱一段；不会在普通聊天里随机唱。
 
 命令兜底：
 
@@ -31,15 +31,24 @@
 - 进度按会话保存，下次接着唱。
 - 一首唱完后，下一次自动下一首。
 
-## 主动唱配置
+## 主动回唱配置
+
+她**不会**在任何一条消息后随机唱，也不会冷却一到就唱。只有：
 
 ```text
-auto_sing_enabled           是否允许主动唱
-auto_sing_percent           每条消息触发概率，默认 3%
-auto_sing_cooldown_minutes  两次主动唱最小间隔，默认 60 分钟
-auto_sing_quiet_start       安静时段开始，默认 23:30
-auto_sing_quiet_end         安静时段结束，默认 08:00
-auto_sing_intro             主动唱前说的一句话
+她发了主动关心消息
+  → 你在 30 分钟内回复
+  → 才可能唱一段
+```
+
+同一条主动消息最多唱一次；没回复就不会唱。
+
+```text
+proactive_reply_enabled        是否允许回复主动消息后唱
+proactive_reply_percent        触发概率，默认 100%
+proactive_reply_window_minutes 回复时限，默认 30 分钟
+proactive_reply_delay_seconds  回复后等几秒再发歌
+proactive_reply_intro          唱之前说的一句话
 ```
 
 ## 歌曲
