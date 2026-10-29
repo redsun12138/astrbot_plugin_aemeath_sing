@@ -56,7 +56,7 @@ SING_PATTERNS = (
     "唱一下",
 )
 
-# 用户求鼓励/奖励时，也算点唱
+# 用户求鼓励/奖励时，交给“她自己判断”而不是直接命令触发
 ENCOURAGE_PATTERNS = (
     "鼓励我",
     "鼓励一下",
@@ -69,6 +69,44 @@ ENCOURAGE_PATTERNS = (
     "哄哄我",
     "求鼓励",
     "求奖励",
+)
+
+# 她察觉到用户需要陪伴/鼓励时，可以自己唱
+CARE_PATTERNS = (
+    "难过",
+    "不开心",
+    "心情不好",
+    "好累",
+    "累死",
+    "压力",
+    "崩溃",
+    "想哭",
+    "失败",
+    "被骂",
+    "孤独",
+    "失眠",
+    "睡不着",
+    "焦虑",
+    "委屈",
+    "需要鼓励",
+    "求安慰",
+    "奖励我",
+    "夸夸我",
+    "给我打气",
+)
+
+# 这些是“聊唱歌”，不是“想听她唱”
+NON_SING_PATTERNS = (
+    "唱歌比赛",
+    "唱歌软件",
+    "唱歌教程",
+    "唱歌好听",
+    "唱歌难听",
+    "会唱歌吗",
+    "唱过歌",
+    "唱歌节目",
+    "唱歌视频",
+    "唱歌的人",
 )
 
 SING_MARKER_PROMPT = """
@@ -216,14 +254,22 @@ class AemeathSingPlugin(Star):
 
     # ---------- 她自己想唱 ----------
 
-    def _schedule_self_sing(self, umo: str) -> None:
+    def _schedule_self_sing(
+        self,
+        umo: str,
+        intro: str | None = None,
+        delay: int | None = None,
+        reason: str = "[sing]",
+    ) -> None:
         if not self.config.get("self_sing_enabled", True):
             return
         if self._cooling(umo, int(self.config.get("self_sing_cooldown_minutes", 20))):
             return
         self._last_sing[umo] = time.time()
-        delay = max(1, int(self.config.get("self_sing_delay_seconds", 2)))
-        intro = str(self.config.get("self_sing_intro", "那我唱一段～"))
+        if delay is None:
+            delay = max(1, int(self.config.get("self_sing_delay_seconds", 2)))
+        if intro is None:
+            intro = str(self.config.get("self_sing_intro", "那我唱一段～"))
 
         async def later():
             await asyncio.sleep(delay)
@@ -236,13 +282,39 @@ class AemeathSingPlugin(Star):
                     umo,
                     MessageChain(self._record(song, chunk, intro)),
                 )
-                logger.info("[aemeath_sing] [sing] 自主唱 %s %s/%s", song.get("title"), idx, total)
+                logger.info("[aemeath_sing] %s 自主唱 %s %s/%s", reason, song.get("title"), idx, total)
             except Exception as exc:
                 logger.error("[aemeath_sing] 自主唱失败: %s", exc)
 
         task = asyncio.create_task(later())
         self._tasks.add(task)
         task.add_done_callback(self._tasks.discard)
+
+    def _maybe_care_reply(self, event: AstrMessageEvent, reply_text: str) -> None:
+        """安慰语境下，如果她自己的回复里说要唱/提到歌，就自动接一段。"""
+        if not self.config.get("care_sing_enabled", True):
+            return
+        if not self._is_care(event.message_str or ""):
+            return
+        if not re.search(r"唱|歌", reply_text or ""):
+            return
+        if re.search(r"不会唱|不想唱|别唱|唱不了|跑调|唱歌比赛", reply_text or ""):
+            return
+        if getattr(event, "_aemeath_sing_scheduled", False):
+            return
+        umo = event.unified_msg_origin
+        if self._cooling(umo, int(self.config.get("care_sing_cooldown_minutes", 20))):
+            return
+        percent = float(self.config.get("care_sing_percent", 100))
+        if random.random() * 100 >= percent:
+            return
+        event._aemeath_sing_scheduled = True
+        self._schedule_self_sing(
+            umo,
+            intro="",  # 她回复里已经说了要唱，不再重复开场白
+            delay=max(1, int(self.config.get("care_sing_delay_seconds", 2))),
+            reason="[care-reply]",
+        )
 
     @filter.on_llm_request()
     async def inject_sing_prompt(self, event: AstrMessageEvent, req) -> None:
@@ -261,15 +333,18 @@ class AemeathSingPlugin(Star):
         if not self.config.get("self_sing_enabled", True):
             return
         text = getattr(response, "completion_text", "") or ""
-        if not re.search(r"\[sing\]", text, re.IGNORECASE):
+        if re.search(r"\[sing\]", text, re.IGNORECASE):
+            response.completion_text = re.sub(
+                r"\s*\[sing\]\s*", "", text, flags=re.IGNORECASE
+            ).strip()
+            if getattr(event, "_aemeath_sing_scheduled", False):
+                return
+            event._aemeath_sing_scheduled = True
+            self._schedule_self_sing(event.unified_msg_origin)
             return
-        response.completion_text = re.sub(
-            r"\s*\[sing\]\s*", "", text, flags=re.IGNORECASE
-        ).strip()
-        if getattr(event, "_aemeath_sing_scheduled", False):
-            return
-        event._aemeath_sing_scheduled = True
-        self._schedule_self_sing(event.unified_msg_origin)
+
+        # 没有 [sing] 时：安慰语境 + 她自己的回复里提到唱/歌，也接一段
+        self._maybe_care_reply(event, text)
 
     @filter.on_decorating_result()
     async def strip_sing_marker(self, event: AstrMessageEvent) -> None:
@@ -282,16 +357,17 @@ class AemeathSingPlugin(Star):
                 for seg in chain
                 if isinstance(seg, Comp.Plain)
             )
-            if not re.search(r"\[sing\]", raw, re.IGNORECASE):
-                return
-            for seg in chain:
-                if isinstance(seg, Comp.Plain) and seg.text:
-                    seg.text = re.sub(
-                        r"\s*\[sing\]\s*", "", seg.text, flags=re.IGNORECASE
-                    ).strip()
-            if not getattr(event, "_aemeath_sing_scheduled", False):
-                event._aemeath_sing_scheduled = True
-                self._schedule_self_sing(event.unified_msg_origin)
+            if re.search(r"\[sing\]", raw, re.IGNORECASE):
+                for seg in chain:
+                    if isinstance(seg, Comp.Plain) and seg.text:
+                        seg.text = re.sub(
+                            r"\s*\[sing\]\s*", "", seg.text, flags=re.IGNORECASE
+                        ).strip()
+                if not getattr(event, "_aemeath_sing_scheduled", False):
+                    event._aemeath_sing_scheduled = True
+                    self._schedule_self_sing(event.unified_msg_origin)
+            else:
+                self._maybe_care_reply(event, raw)
         except Exception as exc:
             logger.error("[aemeath_sing] 处理 [sing] 标记失败: %s", exc)
 
@@ -322,12 +398,17 @@ class AemeathSingPlugin(Star):
         t = (text or "").strip()
         if not t or t.startswith("/"):
             return False
-        return any(p in t for p in SING_PATTERNS + ENCOURAGE_PATTERNS)
+        if any(p in t for p in NON_SING_PATTERNS):
+            return False
+        # 宽松规则：同时出现“唱”和“歌”就当想听歌
+        if "唱" in t and "歌" in t:
+            return True
+        return any(p in t for p in SING_PATTERNS)
 
     @staticmethod
-    def _is_encourage(text: str) -> bool:
+    def _is_care(text: str) -> bool:
         t = (text or "").strip()
-        return any(p in t for p in ENCOURAGE_PATTERNS)
+        return any(p in t for p in CARE_PATTERNS)
 
     def _clean_command_arg(self, text: str) -> str:
         t = (text or "").strip()
@@ -412,14 +493,14 @@ class AemeathSingPlugin(Star):
             self._mark_proactive_seen(umo, self._proactive_ts(umo))
             logger.info("[aemeath_sing] 自然语言点唱 %s %s/%s", song.get("title"), idx, total)
             try:
-                intro = "那我唱一段给你打气～" if self._is_encourage(text) else "好呀，那我唱几句～"
+                intro = "好呀，那我唱几句～"
                 yield event.chain_result(self._record(song, chunk, intro))
             except Exception as exc:
                 logger.error("[aemeath_sing] 发送失败: %s", exc)
                 yield event.plain_result("这一段音频找不到了。")
             return
 
-        # 不是点唱请求时，只有“她刚发过主动消息、用户正在回复”才可能唱
+        # 不是点唱请求时，再看是否在回复主动消息
         if not text.startswith("/"):
             await self._maybe_sing_after_proactive(event)
 
