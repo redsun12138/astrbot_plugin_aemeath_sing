@@ -7,105 +7,57 @@
       "chunks": [
         {
           "file": "001.wav",
-          "start": 0.0,
-          "end": 14.95,
-          "duration": 14.95
+          "start": 59.75,
+          "end": 76.27,
+          "duration": 16.52
         },
         {
           "file": "002.wav",
-          "start": 14.95,
-          "end": 32.55,
-          "duration": 17.6
+          "start": 75.67,
+          "end": 94.31,
+          "duration": 18.64
         },
         {
           "file": "003.wav",
-          "start": 32.55,
-          "end": 47.1,
-          "duration": 14.55
+          "start": 119.71,
+          "end": 136.79,
+          "duration": 17.08
         },
         {
           "file": "004.wav",
-          "start": 47.1,
-          "end": 63.8,
-          "duration": 16.7
+          "start": 136.19,
+          "end": 154.95,
+          "duration": 18.76
         },
         {
           "file": "005.wav",
-          "start": 63.8,
-          "end": 78.9,
-          "duration": 15.1
+          "start": 154.35,
+          "end": 169.91,
+          "duration": 15.56
         },
         {
           "file": "006.wav",
-          "start": 78.9,
-          "end": 94.95,
-          "duration": 16.05
+          "start": 169.31,
+          "end": 175.75,
+          "duration": 6.44
         },
         {
           "file": "007.wav",
-          "start": 94.95,
-          "end": 109.3,
-          "duration": 14.35
+          "start": 178.75,
+          "end": 198.35,
+          "duration": 19.6
         },
         {
           "file": "008.wav",
-          "start": 109.3,
-          "end": 125.1,
-          "duration": 15.8
+          "start": 197.75,
+          "end": 216.95,
+          "duration": 19.2
         },
         {
           "file": "009.wav",
-          "start": 125.1,
-          "end": 139.8,
-          "duration": 14.7
-        },
-        {
-          "file": "010.wav",
-          "start": 139.8,
-          "end": 154.45,
-          "duration": 14.65
-        },
-        {
-          "file": "011.wav",
-          "start": 154.45,
-          "end": 168.95,
-          "duration": 14.5
-        },
-        {
-          "file": "012.wav",
-          "start": 168.95,
-          "end": 184.4,
-          "duration": 15.45
-        },
-        {
-          "file": "013.wav",
-          "start": 184.4,
-          "end": 200.45,
-          "duration": 16.05
-        },
-        {
-          "file": "014.wav",
-          "start": 200.45,
-          "end": 215.95,
-          "duration": 15.5
-        },
-        {
-          "file": "015.wav",
-          "start": 215.95,
-          "end": 232.35,
-          "duration": 16.4
-        },
-        {
-          "file": "016.wav",
-          "start": 232.35,
-          "end": 248.45,
-          "duration": 16.1
-        },
-        {
-          "file": "017.wav",
-          "start": 248.45,
-          "end": 262.67,
-          "duration": 14.22
+          "start": 216.35,
+          "end": 234.95,
+          "duration": 18.6
         }
       ]
     },
@@ -117,92 +69,80 @@
         {
           "file": "001.wav",
           "start": 0.0,
-          "end": 14.95,
-          "duration": 14.95
+          "end": 16.35,
+          "duration": 16.35
         },
         {
           "file": "002.wav",
-          "start": 14.95,
-          "end": 28.9,
-          "duration": 13.95
+          "start": 15.75,
+          "end": 28.35,
+          "duration": 12.6
         },
         {
           "file": "003.wav",
-          "start": 28.9,
-          "end": 43.45,
-          "duration": 14.55
+          "start": 27.75,
+          "end": 39.35,
+          "duration": 11.6
         },
         {
           "file": "004.wav",
-          "start": 43.45,
-          "end": 57.2,
-          "duration": 13.75
+          "start": 38.75,
+          "end": 51.35,
+          "duration": 12.6
         },
         {
           "file": "005.wav",
-          "start": 57.2,
-          "end": 73.8,
-          "duration": 16.6
+          "start": 50.75,
+          "end": 62.73,
+          "duration": 11.98
         },
         {
           "file": "006.wav",
-          "start": 73.8,
-          "end": 88.25,
-          "duration": 14.45
+          "start": 62.13,
+          "end": 76.11,
+          "duration": 13.98
         },
         {
           "file": "007.wav",
-          "start": 88.25,
-          "end": 103.4,
-          "duration": 15.15
+          "start": 75.51,
+          "end": 82.75,
+          "duration": 7.24
         },
         {
           "file": "008.wav",
-          "start": 103.4,
-          "end": 118.65,
-          "duration": 15.25
+          "start": 115.75,
+          "end": 133.35,
+          "duration": 17.6
         },
         {
           "file": "009.wav",
-          "start": 118.65,
-          "end": 136.2,
-          "duration": 17.55
+          "start": 132.75,
+          "end": 144.19,
+          "duration": 11.44
         },
         {
           "file": "010.wav",
-          "start": 136.2,
-          "end": 152.25,
-          "duration": 16.05
+          "start": 143.59,
+          "end": 158.37,
+          "duration": 14.78
         },
         {
           "file": "011.wav",
-          "start": 152.25,
-          "end": 166.85,
-          "duration": 14.6
+          "start": 157.77,
+          "end": 175.77,
+          "duration": 18.0
         },
         {
           "file": "012.wav",
-          "start": 166.85,
-          "end": 183.9,
-          "duration": 17.05
+          "start": 175.17,
+          "end": 192.69,
+          "duration": 17.52
         },
         {
           "file": "013.wav",
-          "start": 183.9,
-          "end": 200.15,
-          "duration": 16.25
-        },
-        {
-          "file": "014.wav",
-          "start": 200.15,
-          "end": 215.0,
-          "duration": 14.85
-        },
-        {
-          "file": "015.wav",
-          "start": 215.0,
-          "end": 232.95,
-          "duration": 17.95
+          "start": 192.09,
+          "end": 205.69,
+          "duration": 13.6
         }
       ]
     },
@@ -214,62 +154,50 @@
         {
           "file": "001.wav",
           "start": 0.0,
-          "end": 14.6,
-          "duration": 14.6
+          "end": 12.35,
+          "duration": 12.35
         },
         {
           "file": "002.wav",
-          "start": 14.6,
-          "end": 30.15,
-          "duration": 15.55
+          "start": 11.75,
+          "end": 23.35,
+          "duration": 11.6
         },
         {
           "file": "003.wav",
-          "start": 30.15,
-          "end": 47.8,
-          "duration": 17.65
+          "start": 22.75,
+          "end": 40.55,
+          "duration": 17.8
         },
         {
           "file": "004.wav",
-          "start": 47.8,
-          "end": 62.95,
-          "duration": 15.15
+          "start": 39.95,
+          "end": 54.55,
+          "duration": 14.6
         },
         {
           "file": "005.wav",
-          "start": 62.95,
-          "end": 78.95,
-          "duration": 16.0
+          "start": 53.95,
+          "end": 73.55,
+          "duration": 19.6
         },
         {
           "file": "006.wav",
-          "start": 78.95,
-          "end": 92.95,
-          "duration": 14.0
+          "start": 72.95,
+          "end": 90.55,
+          "duration": 17.6
         },
         {
           "file": "007.wav",
-          "start": 92.95,
-          "end": 108.5,
-          "duration": 15.55
+          "start": 89.95,
+          "end": 102.95,
+          "duration": 13.0
         },
         {
           "file": "008.wav",
-          "start": 108.5,
-          "end": 124.4,
-          "duration": 15.9
-        },
-        {
-          "file": "009.wav",
-          "start": 124.4,
-          "end": 139.25,
-          "duration": 14.85
-        },
-        {
-          "file": "010.wav",
-          "start": 139.25,
-          "end": 152.47,
-          "duration": 13.22
+          "start": 102.35,
+          "end": 117.09,
+          "duration": 14.74
         }
       ]
     },
@@ -280,93 +208,63 @@
       "chunks": [
         {
           "file": "001.wav",
-          "start": 0.0,
-          "end": 19.25,
-          "duration": 19.25
+          "start": 29.75,
+          "end": 34.05,
+          "duration": 4.3
         },
         {
           "file": "002.wav",
-          "start": 19.25,
-          "end": 34.8,
-          "duration": 15.55
-        },
-        {
-          "file": "003.wav",
-          "start": 34.8,
-          "end": 51.7,
-          "duration": 16.9
-        },
-        {
-          "file": "004.wav",
-          "start": 51.7,
-          "end": 66.3,
-          "duration": 14.6
-        },
-        {
-          "file": "005.wav",
-          "start": 66.3,
-          "end": 82.5,
-          "duration": 16.2
-        },
-        {
-          "file": "006.wav",
-          "start": 82.5,
-          "end": 96.2,
-          "duration": 13.7
-        },
-        {
-          "file": "007.wav",
-          "start": 96.2,
-          "end": 108.95,
-          "duration": 12.75
-        },
-        {
-          "file": "008.wav",
-          "start": 108.95,
-          "end": 123.05,
-          "duration": 14.1
-        },
-        {
-          "file": "009.wav",
-          "start": 123.05,
-          "end": 138.95,
-          "duration": 15.9
-        },
-        {
-          "file": "010.wav",
-          "start": 138.95,
-          "end": 153.85,
-          "duration": 14.9
-        },
-        {
-          "file": "011.wav",
-          "start": 153.85,
-          "end": 166.3,
-          "duration": 12.45
-        },
-        {
-          "file": "012.wav",
-          "start": 166.3,
-          "end": 182.65,
-          "duration": 16.35
-        },
-        {
-          "file": "013.wav",
-          "start": 182.65,
-          "end": 199.65,
+          "start": 36.35,
+          "end": 53.35,
           "duration": 17.0
         },
         {
-          "file": "014.wav",
-          "start": 199.65,
-          "end": 215.35,
-          "duration": 15.7
+          "file": "003.wav",
+          "start": 52.75,
+          "end": 70.25,
+          "duration": 17.5
         },
         {
-          "file": "015.wav",
-          "start": 215.35,
-          "end": 233.51,
-          "duration": 18.16
+          "file": "004.wav",
+          "start": 69.65,
+          "end": 83.05,
+          "duration": 13.4
+        },
+        {
+          "file": "005.wav",
+          "start": 82.45,
+          "end": 89.05,
+          "duration": 6.6
+        },
+        {
+          "file": "006.wav",
+          "start": 88.45,
+          "end": 105.05,
+          "duration": 16.6
+        },
+        {
+          "file": "007.wav",
+          "start": 104.45,
+          "end": 122.35,
+          "duration": 17.9
+        },
+        {
+          "file": "008.wav",
+          "start": 121.75,
+          "end": 135.35,
+          "duration": 13.6
+        },
+        {
+          "file": "009.wav",
+          "start": 168.45,
+          "end": 186.41,
+          "duration": 17.96
+        },
+        {
+          "file": "010.wav",
+          "start": 185.81,
+          "end": 199.57,
+          "duration": 13.76
         }
       ]
     },
@@ -378,92 +276,92 @@
         {
           "file": "001.wav",
           "start": 0.0,
-          "end": 15.4,
-          "duration": 15.4
+          "end": 6.35,
+          "duration": 6.35
         },
         {
           "file": "002.wav",
-          "start": 15.4,
-          "end": 30.95,
-          "duration": 15.55
+          "start": 5.75,
+          "end": 17.05,
+          "duration": 11.3
         },
         {
           "file": "003.wav",
-          "start": 30.95,
-          "end": 45.15,
-          "duration": 14.2
+          "start": 23.25,
+          "end": 33.23,
+          "duration": 9.98
         },
         {
           "file": "004.wav",
-          "start": 45.15,
-          "end": 59.55,
-          "duration": 14.4
+          "start": 34.63,
+          "end": 46.07,
+          "duration": 11.44
         },
         {
           "file": "005.wav",
-          "start": 59.55,
-          "end": 75.5,
-          "duration": 15.95
+          "start": 45.47,
+          "end": 61.91,
+          "duration": 16.44
         },
         {
           "file": "006.wav",
-          "start": 75.5,
-          "end": 90.5,
-          "duration": 15.0
+          "start": 61.31,
+          "end": 77.35,
+          "duration": 16.04
         },
         {
           "file": "007.wav",
-          "start": 90.5,
-          "end": 105.3,
-          "duration": 14.8
+          "start": 76.75,
+          "end": 96.35,
+          "duration": 19.6
         },
         {
           "file": "008.wav",
-          "start": 105.3,
-          "end": 120.6,
-          "duration": 15.3
+          "start": 95.75,
+          "end": 102.25,
+          "duration": 6.5
         },
         {
           "file": "009.wav",
-          "start": 120.6,
-          "end": 136.2,
-          "duration": 15.6
+          "start": 103.25,
+          "end": 116.09,
+          "duration": 12.84
         },
         {
           "file": "010.wav",
-          "start": 136.2,
-          "end": 150.85,
-          "duration": 14.65
+          "start": 117.03,
+          "end": 133.35,
+          "duration": 16.32
         },
         {
           "file": "011.wav",
-          "start": 150.85,
-          "end": 166.2,
-          "duration": 15.35
+          "start": 132.75,
+          "end": 147.17,
+          "duration": 14.42
         },
         {
           "file": "012.wav",
-          "start": 166.2,
-          "end": 181.1,
-          "duration": 14.9
+          "start": 146.57,
+          "end": 160.77,
+          "duration": 14.2
         },
         {
           "file": "013.wav",
-          "start": 181.1,
-          "end": 196.3,
-          "duration": 15.2
+          "start": 160.17,
+          "end": 174.19,
+          "duration": 14.02
         },
         {
           "file": "014.wav",
-          "start": 196.3,
-          "end": 210.95,
-          "duration": 14.65
+          "start": 173.59,
+          "end": 189.49,
+          "duration": 15.9
         },
         {
           "file": "015.wav",
-          "start": 210.95,
-          "end": 225.0,
-          "duration": 14.05
+          "start": 188.89,
+          "end": 195.69,
+          "duration": 6.8
         }
       ]
     },
@@ -474,99 +372,93 @@
       "chunks": [
         {
           "file": "001.wav",
-          "start": 0.0,
-          "end": 14.8,
-          "duration": 14.8
+          "start": 29.75,
+          "end": 45.75,
+          "duration": 16.0
         },
         {
           "file": "002.wav",
-          "start": 14.8,
-          "end": 29.8,
-          "duration": 15.0
+          "start": 45.15,
+          "end": 59.95,
+          "duration": 14.8
         },
         {
           "file": "003.wav",
-          "start": 29.8,
-          "end": 44.65,
-          "duration": 14.85
+          "start": 59.35,
+          "end": 69.75,
+          "duration": 10.4
         },
         {
           "file": "004.wav",
-          "start": 44.65,
-          "end": 59.6,
-          "duration": 14.95
+          "start": 69.15,
+          "end": 80.75,
+          "duration": 11.6
         },
         {
           "file": "005.wav",
-          "start": 59.6,
-          "end": 74.6,
-          "duration": 15.0
+          "start": 80.15,
+          "end": 90.35,
+          "duration": 10.2
         },
         {
           "file": "006.wav",
-          "start": 74.6,
-          "end": 89.9,
-          "duration": 15.3
+          "start": 92.39,
+          "end": 112.27,
+          "duration": 19.88
         },
         {
           "file": "007.wav",
-          "start": 89.9,
-          "end": 103.6,
-          "duration": 13.7
+          "start": 111.67,
+          "end": 125.55,
+          "duration": 13.88
         },
         {
           "file": "008.wav",
-          "start": 103.6,
-          "end": 118.75,
-          "duration": 15.15
+          "start": 124.95,
+          "end": 143.35,
+          "duration": 18.4
         },
         {
           "file": "009.wav",
-          "start": 118.75,
-          "end": 133.95,
-          "duration": 15.2
+          "start": 142.75,
+          "end": 153.35,
+          "duration": 10.6
         },
         {
           "file": "010.wav",
-          "start": 133.95,
-          "end": 148.95,
-          "duration": 15.0
+          "start": 154.75,
+          "end": 158.35,
+          "duration": 3.6
         },
         {
           "file": "011.wav",
-          "start": 148.95,
-          "end": 164.6,
-          "duration": 15.65
+          "start": 159.75,
+          "end": 164.35,
+          "duration": 4.6
         },
         {
           "file": "012.wav",
-          "start": 164.6,
-          "end": 179.65,
-          "duration": 15.05
+          "start": 165.75,
+          "end": 179.99,
+          "duration": 14.24
         },
         {
           "file": "013.wav",
-          "start": 179.65,
-          "end": 194.8,
-          "duration": 15.15
+          "start": 179.39,
+          "end": 198.15,
+          "duration": 18.76
         },
         {
           "file": "014.wav",
-          "start": 194.8,
-          "end": 210.2,
-          "duration": 15.4
+          "start": 197.55,
+          "end": 208.15,
+          "duration": 10.6
         },
         {
           "file": "015.wav",
-          "start": 210.2,
-          "end": 226.35,
-          "duration": 16.15
-        },
-        {
-          "file": "016.wav",
-          "start": 226.35,
-          "end": 241.38,
-          "duration": 15.03
+          "start": 209.55,
+          "end": 225.15,
+          "duration": 15.6
         }
       ]
     },
@@ -577,57 +469,63 @@
       "chunks": [
         {
           "file": "001.wav",
-          "start": 0.0,
-          "end": 17.5,
-          "duration": 17.5
+          "start": 29.75,
+          "end": 33.23,
+          "duration": 3.48
         },
         {
           "file": "002.wav",
-          "start": 17.5,
-          "end": 32.8,
-          "duration": 15.3
+          "start": 34.31,
+          "end": 50.43,
+          "duration": 16.12
         },
         {
           "file": "003.wav",
-          "start": 32.8,
-          "end": 46.95,
-          "duration": 14.15
+          "start": 49.83,
+          "end": 60.79,
+          "duration": 10.96
         },
         {
           "file": "004.wav",
-          "start": 46.95,
-          "end": 62.45,
-          "duration": 15.5
+          "start": 62.19,
+          "end": 77.79,
+          "duration": 15.6
         },
         {
           "file": "005.wav",
-          "start": 62.45,
-          "end": 77.2,
-          "duration": 14.75
+          "start": 78.19,
+          "end": 83.79,
+          "duration": 5.6
         },
         {
           "file": "006.wav",
-          "start": 77.2,
-          "end": 93.75,
-          "duration": 16.55
+          "start": 89.19,
+          "end": 102.51,
+          "duration": 13.32
         },
         {
           "file": "007.wav",
-          "start": 93.75,
-          "end": 111.6,
-          "duration": 17.85
+          "start": 101.91,
+          "end": 115.39,
+          "duration": 13.48
         },
         {
           "file": "008.wav",
-          "start": 111.6,
-          "end": 131.15,
-          "duration": 19.55
+          "start": 114.79,
+          "end": 131.71,
+          "duration": 16.92
         },
         {
           "file": "009.wav",
-          "start": 131.15,
-          "end": 147.9,
-          "duration": 16.75
+          "start": 132.11,
+          "end": 134.71,
+          "duration": 2.6
+        },
+        {
+          "file": "010.wav",
+          "start": 137.11,
+          "end": 139.71,
+          "duration": 2.6
         }
       ]
     }
