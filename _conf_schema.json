@@ -88,5 +88,16 @@
     "description": "回复主动消息后唱之前说的一句话",
     "type": "string",
     "default": "突然想唱一句～"
+  },
+  "natural_reply_enabled": {
+    "description": "语音条后用大模型自然接一句",
+    "hint": "开启后不再使用固定开场白，由当前会话模型根据刚唱的歌和人格生成一句自然回复。",
+    "type": "bool",
+    "default": true
+  },
+  "natural_reply_delay_seconds": {
+    "description": "语音条后等几秒再生成自然回复",
+    "type": "int",
+    "default": 1
   }
 }
