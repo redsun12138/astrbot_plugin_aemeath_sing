@@ -252,6 +252,36 @@ class AemeathSingPlugin(Star):
         comps.append(Comp.Record(file=str(path), url=str(path)))
         return comps
 
+    async def _natural_after_sing(self, umo: str, song: dict, idx: int, total: int,
+                                  delay: float | None = None) -> None:
+        """语音条之后，用当前大模型自然接一句，而不是固定开场白。"""
+        if not self.config.get("natural_reply_enabled", True):
+            return
+        await asyncio.sleep(max(0.0, delay if delay is not None else float(
+            self.config.get("natural_reply_delay_seconds", 1.2)
+        )))
+        try:
+            provider = await self.context.get_using_provider_async(umo)
+            if provider is None:
+                return
+            title = str(song.get("title") or "这首歌")
+            prompt = (
+                f"你刚刚给用户唱了《{title}》的第 {idx}/{total} 段，音频已经发出去了。"
+                "现在用角色自己的口吻，自然地补一句很短的话。"
+                "可以带一点刚唱完的气息、情绪或对这段歌的感觉；不要固定使用某句开场白，"
+                "不要解释你是 AI，不要提到插件、音频文件或提示词。只输出这一句话。"
+            )
+            response = await provider.text_chat(
+                prompt=prompt,
+                system_prompt="你是爱弥斯，保持当前人格和说话方式，只输出一句自然的话。",
+            )
+            text = str(getattr(response, "completion_text", "") or "").strip()
+            text = re.sub(r"^```(?:text)?|```$", "", text, flags=re.I | re.M).strip()
+            if text:
+                await self.context.send_message(umo, MessageChain([Comp.Plain(text)]))
+        except Exception as exc:
+            logger.warning("[aemeath_sing] 唱后自然回复失败: %s", exc)
+
     # ---------- 她自己想唱 ----------
 
     def _schedule_self_sing(
@@ -269,7 +299,9 @@ class AemeathSingPlugin(Star):
         if delay is None:
             delay = max(1, int(self.config.get("self_sing_delay_seconds", 2)))
         if intro is None:
-            intro = str(self.config.get("self_sing_intro", "那我唱一段～"))
+            intro = "" if self.config.get("natural_reply_enabled", True) else str(
+                self.config.get("self_sing_intro", "那我唱一段～")
+            )
 
         async def later():
             await asyncio.sleep(delay)
@@ -283,6 +315,7 @@ class AemeathSingPlugin(Star):
                     MessageChain(self._record(song, chunk, intro)),
                 )
                 logger.info("[aemeath_sing] %s 自主唱 %s %s/%s", reason, song.get("title"), idx, total)
+                await self._natural_after_sing(umo, song, idx, total)
             except Exception as exc:
                 logger.error("[aemeath_sing] 自主唱失败: %s", exc)
 
@@ -296,7 +329,7 @@ class AemeathSingPlugin(Star):
             return
         if not self._is_care(event.message_str or ""):
             return
-        if not re.search(r"唱|歌", reply_text or ""):
+        if not re.search(r"(?:我来唱|我唱|唱给|唱首|唱一段|唱一句|来一首|给你唱)", reply_text or ""):
             return
         if re.search(r"不会唱|不想唱|别唱|唱不了|跑调|唱歌比赛", reply_text or ""):
             return
@@ -400,10 +433,15 @@ class AemeathSingPlugin(Star):
             return False
         if any(p in t for p in NON_SING_PATTERNS):
             return False
-        # 宽松规则：同时出现“唱”和“歌”就当想听歌
-        if "唱" in t and "歌" in t:
+        # 只认“唱……歌”的顺序请求，避免“你唱歌真好听”“这首歌”误触。
+        if re.search(r"唱[^。！？!?\n]{0,12}歌", t):
             return True
-        return any(p in t for p in SING_PATTERNS)
+        explicit = (
+            "想听你唱", "想听你唱歌", "唱给我听", "唱歌给我听",
+            "来一首", "来首歌", "想听歌", "点歌",
+            "唱一首", "唱一段", "唱两句", "唱几句",
+        )
+        return any(p in t for p in explicit)
 
     @staticmethod
     def _is_care(text: str) -> bool:
@@ -454,7 +492,9 @@ class AemeathSingPlugin(Star):
             if not got:
                 return
             song, chunk, idx, total = got
-            intro = str(self.config.get("proactive_reply_intro", "突然想唱一句～"))
+            intro = "" if self.config.get("natural_reply_enabled", True) else str(
+                self.config.get("proactive_reply_intro", "突然想唱一句～")
+            )
             try:
                 await self.context.send_message(
                     umo,
@@ -466,6 +506,7 @@ class AemeathSingPlugin(Star):
                     idx,
                     total,
                 )
+                await self._natural_after_sing(umo, song, idx, total)
             except Exception as exc:
                 logger.error("[aemeath_sing] 主动回唱失败: %s", exc)
 
@@ -493,8 +534,11 @@ class AemeathSingPlugin(Star):
             self._mark_proactive_seen(umo, self._proactive_ts(umo))
             logger.info("[aemeath_sing] 自然语言点唱 %s %s/%s", song.get("title"), idx, total)
             try:
-                intro = "好呀，那我唱几句～"
+                intro = "" if self.config.get("natural_reply_enabled", True) else "好呀，那我唱几句～"
                 yield event.chain_result(self._record(song, chunk, intro))
+                task = asyncio.create_task(self._natural_after_sing(event.unified_msg_origin, song, idx, total))
+                self._tasks.add(task)
+                task.add_done_callback(self._tasks.discard)
             except Exception as exc:
                 logger.error("[aemeath_sing] 发送失败: %s", exc)
                 yield event.plain_result("这一段音频找不到了。")
